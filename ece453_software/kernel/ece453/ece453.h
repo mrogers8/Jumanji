@@ -46,6 +46,7 @@
 #define ECE453_LEDS_OFFSET	    12
 #define ECE453_BUTTONS_OFFSET	    13
 #define ECE453_SWITCHES_OFFSET      14
+#define ECE453_STATUS_OFFSET	    15
 
 /* We'll use our own macros for printk */
 #define dbg(format, arg...) do { if (debug) pr_info(CLASS_NAME ": %s: " format , __FUNCTION__ , ## arg); } while (0)

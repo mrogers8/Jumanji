@@ -28,17 +28,12 @@ int main(int argc, char **argv)
   stepper_hw_init();
 
 
-  printf("MAIN: Test stepper_reset w limit\n");
-
-  stepper_reset();
-
-  stepper_position(4850, 3400);
-  
+  printf("MAIN: Test general movement\n");
 
 //  printf("MAIN: Start Stepper Reset Test\n");
 //  stepper_reset();
 //  sleep(10);
-/*
+
   printf("MAIN: Start Stepper_Position Test\n");
   stepper_position(0, 10);
   while (!complete_X || !complete_Y);  
@@ -59,7 +54,7 @@ int main(int argc, char **argv)
 
   stepper_position(0, 0);
   while (!complete_X || !complete_Y);
-*/
+
   printf("MAIN: Integration Test Complete\n");
 
   return 0;

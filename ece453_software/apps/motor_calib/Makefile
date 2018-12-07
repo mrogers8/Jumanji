@@ -1,4 +1,4 @@
-FILENAME=test_buttons
+FILENAME=motor_travel
 CC=arm-linux-gnueabihf-gcc
 IDIR =../include
 CFLAGS=-I$(IDIR)

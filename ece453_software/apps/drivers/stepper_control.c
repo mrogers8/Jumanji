@@ -9,10 +9,6 @@
 
 volatile int player_space[4] = {0,0,0,0};
 
-const int SPACE_START_X[4] = {100,200,300,400};
-const int SPACE_START_Y[4] = {100,200,300,400};
-
-
 //*****************************************************************************
 // stepper_player_start 
 // Moves Stepper Motor to Player's starting space
@@ -56,18 +52,18 @@ int stepper_control (int player_num, int player_start, int player_end)
 
   while (temp_end != player_end) {
 	//detect turns
-	if (temp_start < SPACE_TURN_0 && player_end > SPACE_TURN_0) {
+	if (temp_start < SPACE_TURN[0] && player_end > SPACE_TURN[0]) {
 	   //turn 0
-	   temp_end = SPACE_TURN_0;
-	} else if (temp_start < SPACE_TURN_1 && player_end > SPACE_TURN_1) {
+	   temp_end = SPACE_TURN[0];
+	} else if (temp_start < SPACE_TURN[1] && player_end > SPACE_TURN[1]) {
 	   //turn 1
-	   temp_end = SPACE_TURN_1;
-	} else if (temp_start < SPACE_TURN_2 && player_end > SPACE_TURN_2) {
+	   temp_end = SPACE_TURN[1];
+	} else if (temp_start < SPACE_TURN[2] && player_end > SPACE_TURN[2]) {
 	   //turn 2
-	   temp_end = SPACE_TURN_2;
-	} else if (temp_start < SPACE_TURN_3 && player_end > SPACE_TURN_3) {
+	   temp_end = SPACE_TURN[2];
+	} else if (temp_start < SPACE_TURN[3] && player_end > SPACE_TURN[3]) {
 	   //turn 3
-	   temp_end = SPACE_TURN_3;
+	   temp_end = SPACE_TURN[3];
 	} else {
 	   //no turns
 	   temp_end = player_end;
@@ -119,41 +115,22 @@ int stepper_line_move (int player_num, int space_start, int space_end)
 //*****************************************************************************
 int determine_direction (int player_num, int space_start, int space_end)
 {
-  if (space_end < SPACE_TURN_0 && space_start < SPACE_TURN_0) {
-	switch (player_num) {
-	   case 0 : return DIR_P0_LEG_0;
-	   case 1 : return DIR_P1_LEG_0;
-	   case 2 : return DIR_P2_LEG_0;
-	   case 3 : return DIR_P3_LEG_0;
-	} 
-  } else if (space_end < SPACE_TURN_1 && space_start < SPACE_TURN_1) {
-	switch (player_num) {
-	   case 0 : return DIR_P0_LEG_1;
-	   case 1 : return DIR_P1_LEG_1;
-	   case 2 : return DIR_P2_LEG_1;
-	   case 3 : return DIR_P3_LEG_1;
-	} 
-  } else if (space_end < SPACE_TURN_2 && space_start < SPACE_TURN_2) {
-	switch (player_num) {
-	   case 0 : return DIR_P0_LEG_2;
-	   case 1 : return DIR_P1_LEG_2;
-	   case 2 : return DIR_P2_LEG_2;
-	   case 3 : return DIR_P3_LEG_2;
-	} 
-  } else if (space_end < SPACE_TURN_3 && space_start < SPACE_TURN_3) {
-	switch (player_num) {
-	   case 0 : return DIR_P0_LEG_3;
-	   case 1 : return DIR_P1_LEG_3;
-	   case 2 : return DIR_P2_LEG_3;
-	   case 3 : return DIR_P3_LEG_3;
-	} 
-  } else if (space_end > SPACE_TURN_3 && space_start > SPACE_TURN_3) {
-	switch (player_num) {
-	   case 0 : return DIR_P0_LEG_4;
-	   case 1 : return DIR_P1_LEG_4;
-	   case 2 : return DIR_P2_LEG_4;
-	   case 3 : return DIR_P3_LEG_4;
-	} 
+
+  if (space_end < SPACE_TURN[0] && space_start < SPACE_TURN[0]) {
+	return DIR_P_LEG[player_num][0];
+
+  } else if (space_end < SPACE_TURN[1] && space_start < SPACE_TURN[1]) {
+  	return DIR_P_LEG[player_num][1];
+
+  } else if (space_end < SPACE_TURN[2] && space_start < SPACE_TURN[2]) {
+	return DIR_P_LEG[player_num][2];	
+
+  } else if (space_end < SPACE_TURN[3] && space_start < SPACE_TURN[3]) {
+	return DIR_P_LEG[player_num][3];
+
+  } else if (space_end > SPACE_TURN[3] && space_start > SPACE_TURN[4]) {
+	return DIR_P_LEG[player_num][4];
+
   } else { 
 	printf("Invalid space line calculated: contains turn\n");
 	return 5;

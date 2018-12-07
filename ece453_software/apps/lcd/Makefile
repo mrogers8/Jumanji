@@ -1,7 +1,8 @@
-FILENAME=test_buttons
+FILENAME=test_play_image
 CC=arm-linux-gnueabihf-gcc
 IDIR =../include
-CFLAGS=-I$(IDIR)
+CFLAGS=-I$(IDIR) `pkg-config --cflags mpv`
+LFLAGS=`pkg-config --libs mpv`
 LIBS=
 ODIR=../obj
 

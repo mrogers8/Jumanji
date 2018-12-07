@@ -9,50 +9,23 @@
 //*****************************************************************************
 
 #define STEPS_PER_SPACE		10   //Stepper motor steps per board space
-
-//*****************************************************************************
-
 #define SPACE_WINNING		20
-//TODO add special space info
 
 //*****************************************************************************
-/*
-//TODO set step values for spaces
-#define SPACE_START_X 		{100, 200, 300, 400}
-#define SPACE_START_Y 		{100, 200, 300, 400}
-
-*/
 //*****************************************************************************
 
-#define SPACE_TURN_0		3    //positions when board turns
-#define SPACE_TURN_1		5
-#define SPACE_TURN_2		10
-#define SPACE_TURN_3		14
+// Step starting position [player]
+static int SPACE_START_X[4] = {100, 200, 300, 400};
+static int SPACE_START_Y[4] = {100, 200, 300, 400};
 
-// North 0, South 1, East 2, West 3
-#define DIR_P0_LEG_0		0
-#define DIR_P0_LEG_1		3
-#define DIR_P0_LEG_2		1
-#define DIR_P0_LEG_3		2
-#define DIR_P0_LEG_4		0
+// Space containing a turn [player]
+static int SPACE_TURN[4] = {3, 5, 10, 14};
 
-#define DIR_P1_LEG_0		0
-#define DIR_P1_LEG_1		2
-#define DIR_P1_LEG_2		1
-#define DIR_P1_LEG_3		3
-#define DIR_P1_LEG_4		0
-
-#define DIR_P2_LEG_0		1
-#define DIR_P2_LEG_1		2
-#define DIR_P2_LEG_2		0
-#define DIR_P2_LEG_3		3
-#define DIR_P2_LEG_4		1
-
-#define DIR_P3_LEG_0		1	
-#define DIR_P3_LEG_1		3
-#define DIR_P3_LEG_2		0
-#define DIR_P3_LEG_3		2
-#define DIR_P3_LEG_4		1
+// Direction of motion per [player][leg of track]
+static int DIR_P_LEG[4][5] = {0, 3, 1, 2, 0,
+			      0, 2, 1, 3, 0, 
+			      1, 2, 0, 3, 1,
+			      1, 3, 0, 2, 1};
 
 
 //*****************************************************************************

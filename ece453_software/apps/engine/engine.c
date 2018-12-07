@@ -27,39 +27,45 @@ int main(int argc, char **argv)
   // Local Variables
   char response[80];
   int dice_roll;
+  int button_press;
 
+  //****************************
   // Hardware Initialization
+  //****************************
+  //**TODO LCD_play title screen
+  stepper_hw_init();
+  leds_set_all();
+  stepper_reset();
+  //**TODO LCD play press any button to continue screen
+  
+  // Press any button to continue
+  while (!buttons_read_all());
 
-
+  //****************************
   // Game Initialization
-	// Determine player count
+  //****************************
+  // Determine player count
+  //**TODO LCD_play select players screen
+  
+  
+  while (!(button_press = buttons_read_all())) {
+	if (buttons_is_red(button_press)) 	   num_players = 1;
+ 	else if (buttons_is_orange(button_press))  num_players = 2;
+        else if (buttons_is_green(button_press))   num_players = 3;
+	else if (buttons_is_blue(button_press))    num_players = 4;
+  }
+  // 2 buttons do not work so this is hardcoded
   num_players = 4;
-	//
+  
+  
 
-
-  //Wait for the user to indicate how many steps to move
-  //printf("Enter the number of steps: ");
-  //fgets(response, 79,stdin);
-  //steps = strtol(response,NULL,10);
-
-  // Set the step count reg to the value in steps
-  //ece453_reg_write(STEP_COUNT_REG, steps);
-
- 
   // Game Play
   while (!game_won) {
 	// Roll Dice Module
-	dice_roll = 1; //TODO add roll dice module function
-		       //Interface () return dice_roll
-		       // will control LCD Screen
-	
+	dice_roll = ;
+
 
 	// Move Player
-	//TODO add player movement module
-	// Interface (starting position, ending position, player)
-	//  Ret: bool   
-	//  calculate vector for movement, call stepper motors/magnet
-
 
 	// Check if won (player space > value)
 	if (player_space[player_turn] >= SPACE_WINNING) {

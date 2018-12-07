@@ -12,11 +12,9 @@ int main(int argc, char *argv[])
 {
 
   leds_clear_all();
-
+/*
   printf("RED\n");
   leds_set_red();
-
-  sleep(15);
 
   printf("YELLOW\n");
   leds_set_orange();
@@ -34,12 +32,12 @@ int main(int argc, char *argv[])
 
   sleep(10);
 
-
+*/
 
   leds_clear_all();
 
   while (1) {
-    sleep(4);
+/*    sleep(4);
     leds_set_red();
     sleep(2);
     leds_set_orange();
@@ -49,7 +47,9 @@ int main(int argc, char *argv[])
     sleep(2);
     leds_clear_orange();
     leds_set_green();
+*/
 
+    leds_set_all();
     printf("  Press Red\n");
     while (!buttons_read_red());
     leds_clear_red();

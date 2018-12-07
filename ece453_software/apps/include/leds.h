@@ -18,21 +18,21 @@
 #define LEDS_OFF		0x0
 #define LEDS_RED 		0x1
 #define LEDS_ORA		0x2
-#define LEDS_YEL		0x4
-#define LEDS_GRE		0x8
+#define LEDS_GRE		0x4
+#define LEDS_BLU		0x8
 #define LEDS_ALL		0xF
 
 //*****************************************************************************
 //*****************************************************************************
 void leds_set_red (void);
 void leds_set_orange (void);
-void leds_set_yellow (void);
 void leds_set_green (void);
+void leds_set_blue (void);
 
 void leds_clear_red (void);
 void leds_clear_orange (void);
-void leds_clear_yellow (void);
 void leds_clear_green (void);
+void leds_clear_blue (void);
 
 void leds_set_all (void);
 void leds_clear_all (void);

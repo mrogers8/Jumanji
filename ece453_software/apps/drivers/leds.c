@@ -28,20 +28,20 @@ void leds_set_orange (void)
   ece453_reg_write(LEDS_REG, current_val | LEDS_ORA);
 }
 
-void leds_set_yellow (void)
-{
-  int current_val;
-
-  current_val = ece453_reg_read(LEDS_REG);
-  ece453_reg_write(LEDS_REG, current_val | LEDS_YEL);
-}
-
 void leds_set_green (void)
 {
   int current_val;
 
   current_val = ece453_reg_read(LEDS_REG);
   ece453_reg_write(LEDS_REG, current_val | LEDS_GRE);
+}
+
+void leds_set_blue (void)
+{
+  int current_val;
+
+  current_val = ece453_reg_read(LEDS_REG);
+  ece453_reg_write(LEDS_REG, current_val | LEDS_BLU);
 }
 
 //*****************************************************************************
@@ -68,20 +68,20 @@ void leds_clear_orange (void)
   ece453_reg_write(LEDS_REG, current_val | LEDS_ORA);
 }
 
-void leds_clear_yellow (void)
-{
-  int current_val;
-
-  current_val = ece453_reg_read(LEDS_REG);
-  ece453_reg_write(LEDS_REG, current_val | LEDS_YEL);
-}
-
 void leds_clear_green (void)
 {
   int current_val;
 
   current_val = ece453_reg_read(LEDS_REG);
   ece453_reg_write(LEDS_REG, current_val | LEDS_GRE);
+}
+
+void leds_clear_blue (void)
+{
+  int current_val;
+
+  current_val = ece453_reg_read(LEDS_REG);
+  ece453_reg_write(LEDS_REG, current_val | LEDS_BLU);
 }
 
 

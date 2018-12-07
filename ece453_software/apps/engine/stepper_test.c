@@ -28,38 +28,70 @@ int main(int argc, char **argv)
   stepper_hw_init();
 
 
-  printf("MAIN: Test stepper_reset w limit\n");
-
-  stepper_reset();
-
-  stepper_position(4850, 3400);
-  
+  printf("MAIN: Test general movement\n");
 
 //  printf("MAIN: Start Stepper Reset Test\n");
 //  stepper_reset();
 //  sleep(10);
-/*
+
   printf("MAIN: Start Stepper_Position Test\n");
-  stepper_position(0, 10);
+  stepper_position(300, 0);
+  while (!complete_X || !complete_Y);  
+  sleep(3);
+ 
+  printf("MAIN: Next\n");
+ 
+  stepper_position(0, 0);
   while (!complete_X || !complete_Y);  
   sleep(3);
 
-  electro_mag_on();
+  stepper_position(0, 300);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+  stepper_position(0, 0);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+  stepper_position(1000, 1000);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+  stepper_position(500, 500);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+  stepper_position(200, 700);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+  stepper_position(700, 200);
+  while (!complete_X || !complete_Y);
+  sleep(3);
+
+
+/*
+  stepper_position(700, 700);
+  sleep(5);
+
+  printf("MAIN: Move to player 1 postion\n");
+
+  stepper_player_start (0);
+  sleep(15);
  
-  stepper_position(0, 1000);
-  while (!complete_X || !complete_Y);
-
-  stepper_position(0, 0);
-  while (!complete_X || !complete_Y);
-
-  stepper_position(0, 1000);
-  while (!complete_X || !complete_Y);
-
-  electro_mag_off();
-
-  stepper_position(0, 0);
-  while (!complete_X || !complete_Y);
+  stepper_player_start (1);
+  sleep(15);
+ 
+  stepper_player_start (2);
+  sleep(15);
+ 
+  stepper_player_start (3);
+  sleep(15);
+   
+  printf("MAIN: Test space movement\n");
 */
+
+
   printf("MAIN: Integration Test Complete\n");
 
   return 0;

@@ -259,6 +259,18 @@ static ssize_t ece453_read_switches (
   return sprintf(buf, "%08x\n", val);
 }
 
+// STATUS 
+static ssize_t ece453_read_status ( 
+    struct kobject *kobj, 
+    struct kobj_attribute *attr, 
+    char *buf
+    )
+{
+  int val = ioread32(base_addr + ECE453_STATUS_OFFSET);
+  return sprintf(buf, "%08x\n", val);
+}
+
+
 /*****************************************************************************/
 /* Write Functions                                                           */
 /*****************************************************************************/
@@ -419,6 +431,20 @@ static ssize_t ece453_write_leds (
   return count;
 }
 
+// STATUS
+static ssize_t ece453_write_status (
+    struct kobject *kobj, 
+    struct kobj_attribute *attr, 
+    const char *buf, 
+    size_t count
+    )
+{
+  int var;
+  sscanf(buf, "%xu", &var);
+  iowrite32( var, base_addr + ECE453_STATUS_OFFSET);
+  return count;
+}
+
 /*****************************************************************************/
 /*****************************************************************************/
 static ssize_t ece453_write_pid(struct kobject *kobj, struct kobj_attribute *attr,
@@ -487,6 +513,8 @@ static struct kobj_attribute buttons_attribute  =
 static struct kobj_attribute switches_attribute  =
 	__ATTR(switches, 0440, ece453_read_switches, NULL); 
 
+static struct kobj_attribute status_attribute  =
+	__ATTR(status, 0664, ece453_read_status, ece453_write_status); 
 
 
 /*
@@ -510,6 +538,7 @@ static struct attribute *attrs[] = {
 	&leds_attribute.attr,
 	&buttons_attribute.attr,
 	&switches_attribute.attr,
+	&status_attribute.attr,
         NULL   /* need to NULL terminate the list of attributes */
 };
 

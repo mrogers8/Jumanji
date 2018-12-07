@@ -17,8 +17,8 @@
 //*****************************************************************************
 #define BUTTONS_RED 		0x8
 #define BUTTONS_ORA		0x4
-#define BUTTONS_YEL		0x2
-#define BUTTONS_GRE		0x1
+#define BUTTONS_GRE		0x2
+#define BUTTONS_BLU		0x1
 
 #define BUTTONS_X_MIN		0x1
 #define BUTTONS_X_MAX		0x2
@@ -31,8 +31,8 @@ int buttons_read_all (void);
 
 int buttons_read_red (void);
 int buttons_read_orange (void);
-int buttons_read_yellow (void);
 int buttons_read_green (void);
+int buttons_read_blue (void);
 
 //*****************************************************************************
 //*****************************************************************************

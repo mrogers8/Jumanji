@@ -7,10 +7,9 @@
  */
 #include "../include/stepper.h"
 
-bool complete_X = true;
-bool complete_Y = true;
-struct sigaction stepper_sig_X;
-struct sigaction stepper_sig_Y;
+volatile bool complete_X = true;
+volatile bool complete_Y = true;
+struct sigaction stepper_sig;
 
 //*****************************************************************************
 //  stepper_init
@@ -18,14 +17,9 @@ struct sigaction stepper_sig_Y;
 //*****************************************************************************
 void stepper_hw_init (void)
 {
-  stepper_sig_X.sa_sigaction = receiveData_X;
-  stepper_sig_Y.sa_sigaction = receiveData_Y;
-  stepper_sig_X.sa_mask = 0x1;
-  stepper_sig_Y.sa_mask = 0x2;
-  stepper_sig_X.sa_flags = SA_SIGINFO;
-  stepper_sig_Y.sa_flags = SA_SIGINFO;
-  sigaction(SIG_TEST, &stepper_sig_Y, NULL);
-  sigaction(SIG_TEST, &stepper_sig_X, NULL);
+  stepper_sig.sa_sigaction = receiveData;
+  stepper_sig.sa_flags = SA_SIGINFO;
+  sigaction(SIG_TEST, &stepper_sig, NULL);
 
   set_pid();
 }
@@ -72,25 +66,29 @@ int clear_pid(void)
 }
 
 //*****************************************************************************
-//  receiveData_X
+//  receiveData
 //  Interrupt Handler for Stepper Motor X
 //*****************************************************************************
-void receiveData_X (int n, siginfo_t *info, void *unused)
+void receiveData (int n, siginfo_t *info, void *unused)
 {
-   ece453_reg_write(CONTROL_X_REG, 0x05);
-   complete_X = true;
-   printf("DEBUG: Stepping X Complete\n");
-}
+   int status;
 
-//*****************************************************************************
-//  receiveData_Y
-//  Interrupt Handler for Stepper Motor Y
-//*****************************************************************************
-void receiveData_Y (int n, siginfo_t *info, void *unused)
-{
-   ece453_reg_write(CONTROL_Y_REG, 0x05);
-   complete_Y = true;
-   printf("DEBUG: Stepping Y Complete\n");
+   status = ece453_reg_read(STATUS_REG);
+   printf("DEBUG: receiveData begin [status_reg: %d]\n", status);
+   if (status & STATUS_X_MASK) {
+   	ece453_reg_write(CONTROL_X_REG, 0x05);
+	complete_X = true;
+	ece453_reg_write(STATUS_REG, (status & ~STATUS_X_MASK));
+	printf("DEBUG: Stepping X Complete\n");
+   }
+   if (status & STATUS_Y_MASK) {	
+        ece453_reg_write(CONTROL_Y_REG, 0x05);
+	complete_Y = true;
+	ece453_reg_write(STATUS_REG, (status & ~STATUS_Y_MASK));
+	printf("DEBUG: Stepping Y Complete\n");
+   }
+
+   printf("DEBUG: interrupt handler completed [status_reg: %d]\n", ece453_reg_read(STATUS_REG));
 }
 
 //*****************************************************************************
@@ -141,6 +139,8 @@ int step_x (int steps, int direction)
   ece453_reg_write(STEP_COUNT_X_REG, steps);
   printf("DEBUG: X = %d\n", steps);
  
+  complete_X = false;
+
   // Configure the control register so that the stepper motor stops once the step count reaches 0
   if (direction == STEPPER_EAST) {
   	ece453_reg_write(CONTROL_X_REG, 0x1B);
@@ -151,8 +151,6 @@ int step_x (int steps, int direction)
 	return 1;
   }
   
-  complete_X = false;
-
   return 0;
 }
 
@@ -182,20 +180,20 @@ int step_y (int steps, int direction)
   ece453_reg_write(STEP_COUNT_Y_REG, steps);
   printf("DEBUG: Y = %d\n", steps);
  
+  complete_Y = false; 
+ 
   // Configure the control register so that the stepper motor stops once the step count reaches
   // 0 
 
   if (direction == STEPPER_NORTH) {
-  	ece453_reg_write(CONTROL_Y_REG, 0x1B);
+  	ece453_reg_write(CONTROL_Y_REG, 0x19);
   } else if (direction == STEPPER_SOUTH) {
-	ece453_reg_write(CONTROL_Y_REG, 0x19);
+	ece453_reg_write(CONTROL_Y_REG, 0x1B);
   } else {
 	printf("ERROR: Invalid Stepper Y Direction Value\n");
 	return 1;
   }
 
-  complete_Y = false; 
- 
   return 0;
 }
 

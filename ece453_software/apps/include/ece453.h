@@ -38,6 +38,7 @@
 #define LEDS_REG		"/sys/kernel/ece453/leds"
 #define BUTTONS_REG		"/sys/kernel/ece453/buttons"
 #define SWITCHES_REG		"/sys/kernel/ece453/switches"
+#define STATUS_REG		"/sys/kernel/ece453/status"
 
 //*******************************************************************
 // Register Addresses
@@ -57,6 +58,7 @@
 #define ECE453_LEDS_OFFSET          12
 #define ECE453_BUTTONS_OFFSET       13
 #define ECE453_SWITCHES_OFFSET	    14
+#define ECE453_STATUS_OFFSET	    15
 
 //*******************************************************************
 // Register Bit Definitions
@@ -66,8 +68,9 @@
 #define CONTROL_EN_N_BIT_NUM	    2
 #define CONTROL_SLEEP_N_BIT_NUM	    3
 #define CONTROL_MODE_BIT_NUM	    4
-#define LEDS_RED_NUM 0 //TODO
 
+#define STATUS_X_BIT_NUM	    0
+#define STATUS_Y_BIT_NUM	    1
 
 //*******************************************************************
 // Register Masks
@@ -77,6 +80,9 @@
 #define CONTROL_EN_N_MASK	 (1 << CONTROL_EN_N_BIT_NUM)
 #define CONTROL_SLEEP_N_MASK	 (1 << CONTROL_SLEEP_N_BIT_NUM)
 #define CONTROL_MODE_MASK	 (1 << CONTROL_MODE_BIT_NUM)
+
+#define STATUS_X_MASK		 (1 << STATUS_X_BIT_NUM)
+#define STATUS_Y_MASK		 (1 << STATUS_Y_BIT_NUM)
 
 //*****************************************************************************
 //*****************************************************************************
