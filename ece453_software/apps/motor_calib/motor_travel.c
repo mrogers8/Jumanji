@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
 
   printf("MAIN: Test general movement\n");
-
+  
 
 //  printf("MAIN: Start Stepper Reset Test\n");
 //  stepper_reset();
@@ -43,7 +43,10 @@ int main(int argc, char **argv)
   int step_int;
 
   printf("trigger all the switches\n");
-
+  electro_mag_on();
+  step_y(600, 2);
+  electro_mag_off();
+  
   /*
   while (!buttons_read_x_min()) ;
   printf("x_min triggered\n");
@@ -62,22 +65,10 @@ int main(int argc, char **argv)
   printf("x_max triggered, max range: %d\n", step_total);
   step_total = 0;
   */
-  while (!buttons_read_y_min()) {
-    steps = 0;
-    printf("Enter steps: \n");
-    scanf("%d", &steps);
-    step_total += steps;
-    step_y(steps, 0); 
-  }
-  printf("y_min triggered, max range: %d\n", step_total);
-  
-
-  while (!buttons_read_y_max()) ;
-  printf("y_max triggered\n");
-
  
+  //stepper_reset();
   printf("MAIN: Integration Test Complete\n");
-
+ 
   return 0;
 
 }

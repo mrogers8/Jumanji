@@ -1,5 +1,4 @@
-/*
- * LCD IMAGE PLAYER
+D IMAGE PLAYER
  */
 #include "../include/ece453.h"
 
@@ -17,22 +16,9 @@
 // Constants for Image File Commands
 //*****************************************************************************
 
-
-struct Card {
-   string name;         //card name
-   int card_type; 		// 2 = special 1 = River, 0 = Jungle
-   int num_rolls;		// number of chances to roll
-   int magic_roll;		// number to win
-   int space_reward;		// number of space to move
-
-   const string mpv_inst;	// image command
-   const string mpv_win;
-   const string mpv_lose;
-}
-
 const Card cardDefinitions[12] = {
                                     {
-                                        "RiverCrocodiles" //card name
+                                        "RiverCrocodiles", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         3,                //number to win
@@ -42,7 +28,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverCrocodilesFail.png",                  //img command fail
                                     },
                                     {
-                                        "RiverFork" //card name
+                                        "RiverFork", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         1,                //number to win
@@ -52,7 +38,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverForkFail.png",                  //img command fail
                                     },
                                     {
-                                        "RiverPiranhas" //card name
+                                        "RiverPiranhas", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         5,                //number to win
@@ -62,7 +48,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverPiranhasPass.png",                  //img command fail
                                     },
                                     {
-                                        "RiverRaft" //card name
+                                        "RiverRaft", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         1,                //number to win
@@ -72,7 +58,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverRaft.png",                  //img command fail
                                     },
                                     {
-                                        "RiverWaterfall" //card name
+                                        "RiverWaterfall", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         4,                //number to win
@@ -82,7 +68,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverWaterfallFail.png",                  //img command fail
                                     },
                                     {
-                                        "RiverWhirlpool" //card name
+                                        "RiverWhirlpool", //card name
                                         1,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         4,                //number to win
@@ -92,7 +78,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/RiverWhirlpoolFail.png"                  //img command fail
                                     },
                                     {
-                                        "JungleBats" //card name
+                                        "JungleBats",	  //card name
                                         0,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         1,                //number to win
@@ -102,7 +88,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/JungleBatsFail.png",                  //img command fail
                                     },
                                     {
-                                        "JunglePelican" //card name
+                                        "JunglePelican",  //card name
                                         0,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         4,                //number to win
@@ -112,7 +98,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/JunglePelicanFail.png",                  //img command fail
                                     },
                                     {
-                                        "JunglePlants" //card name
+                                        "JunglePlants",	  //card name
                                         0,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         3,                //number to win
@@ -122,7 +108,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/JunglePlantsFail.png",                  //img command fail
                                     },
                                     {
-                                        "JungleSnakes" //card name
+                                        "JungleSnakes",   //card name
                                         0,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         5,                //number to win
@@ -132,7 +118,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/JungleSnakesFail.png",                  //img command fail
                                     },
                                     {
-                                        "JungleStampede" //card name
+                                        "JungleStampede", //card name
                                         0,                //card type 1 = River 0 = Jungle
                                         3,                //number of chances to Roll
                                         2,                //number to win
@@ -142,7 +128,7 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/JungleStampedeFail.png"                  //img command fail
                                     },
                                     {
-                                        "Quicksand" //card name
+                                        "Quicksand",	  //card name
                                         2,                //card type 1 = River 0 = Jungle
                                         1,                //number of chances to Roll
                                         3,                //number to win
@@ -150,17 +136,16 @@ const Card cardDefinitions[12] = {
                                         "mpv --image-display-duration=10 video/Quicksand.png"                  //img command
                                         "mpv --image-display-duration=10 video/QuicksandPass.png"                   //img command pass
                                         "mpv --image-display-duration=10 video/QuicksandFail.png"                   //img command fail
-                                    },
+                                    }
 
-                                }
+                                };
 
 
 // MPV COMMANDS PER SPACE
 // All images will be stored in the ~/video directory
 // --image-display-duration=# sets the time that image will display
 // 		^defalut set to "inf" ie. infinity
-// @Brian we'll have to play with image-display configs for how long we want them to play
-const string MPV_RIVER_INST[6] = {
+const char * MPV_RIVER_INST[6] = {
                                 "mpv --image-display-duration=10 video/RiverCrocodiles.png",
                                 "mpv --image-display-duration=10 video/RiverFork.png",
                                 "mpv --image-display-duration=10 video/RiverPiranhas.png",
@@ -168,7 +153,7 @@ const string MPV_RIVER_INST[6] = {
                                 "mpv --image-display-duration=10 video/RiverWaterfall.png",
                                 "mpv --image-display-duration=10 video/RiverWhirlpool.png"
                              };
-const string MPV_RIVER_WIN [6] = {
+const char * MPV_RIVER_WIN [6] = {
                                 "mpv --image-display-duration=10 video/RiverCrocodilesPass.png",
                                 "mpv --image-display-duration=10 video/RiverForkPass.png",
                                 "mpv --image-display-duration=10 video/RiverPiranhasPass.png",
@@ -176,23 +161,23 @@ const string MPV_RIVER_WIN [6] = {
                                 "mpv --image-display-duration=10 video/RiverWaterfallPass.png",
                                 "mpv --image-display-duration=10 video/RiverWhirlpoolPass.png"
                              };
-const string MPV_RIVER_LOSE[6] = {
+const char * MPV_RIVER_LOSE[6] = {
                                 "mpv --image-display-duration=10 video/RiverCrocodilesFail.png",
                                 "mpv --image-display-duration=10 video/RiverForkFail.png",
                                 "mpv --image-display-duration=10 video/RiverPiranhasFail.png",
                                 "mpv --image-display-duration=10 video/RiverRaftFail.png",
                                 "mpv --image-display-duration=10 video/RiverWaterfallFail.png",
                                 "mpv --image-display-duration=10 video/RiverWhirlpoolFail.png"
-                             };	//@Brian you can also make a struct for mpv commands
-const string MPV_JUNGLE[5] = {
+                             };
+const char * MPV_JUNGLE_INST[5] = {
                                 "mpv --image-display-duration=10 video/JungleBats.png",
                                 "mpv --image-display-duration=10 video/JunglePelican.png",
                                 "mpv --image-display-duration=10 video/JunglePlants.png",
                                 "mpv --image-display-duration=10 video/JungleSnakes.png",
                                 "mpv --image-display-duration=10 video/JungleStampede.png"
-};	//  if that's easier and pass that to the struct
+};
 
-const string MPV_JUNGLE_WIN[5] = {
+const char * MPV_JUNGLE_WIN[5] = {
                                 "mpv --image-display-duration=10 video/JungleBatsPass.png",
                                 "mpv --image-display-duration=10 video/JunglePelicanPass.png",
                                 "mpv --image-display-duration=10 video/JunglePlantsPass.png",
@@ -200,7 +185,7 @@ const string MPV_JUNGLE_WIN[5] = {
                                 "mpv --image-display-duration=10 video/JungleStampedePass.png"
 };
 
-const string MPV_JUNGLE_LOSE[5] = {
+const char * MPV_JUNGLE_LOSE[5] = {
                                 "mpv --image-display-duration=10 video/JungleBatsFail.png",
                                 "mpv --image-display-duration=10 video/JunglePelicanFail.png",
                                 "mpv --image-display-duration=10 video/JunglePlantsFail.png",
@@ -208,12 +193,8 @@ const string MPV_JUNGLE_LOSE[5] = {
                                 "mpv --image-display-duration=10 video/JungleStampedeFail.png"
 };
 
-// SPACE DEFINITIONS
-const Space RIVER_CROC = { 1, 3, 1, 3, MPV_RIVER_INST[0]};
-
-
 // CARD TYPE ORDERING FOR DECODING
-const Space[6] RIVER_CARDS = {RIVER_CROC};
+//const Space RIVER_CARDS[6] = {RIVER_CROC};
 
 //*****************************************************************************
 // lcd_play_image
@@ -221,10 +202,11 @@ const Space[6] RIVER_CARDS = {RIVER_CROC};
 //
 //
 //*****************************************************************************
-int lcd_play_space (Card * card)
+int lcd_play_space (Card card)
 {
 
-  lcd_play_image(card->
+  lcd_play_image(card.mpv_inst);
+  lcd_play_image(card.mpv_win);
 
   return 0;
 }
@@ -235,10 +217,8 @@ int lcd_play_space (Card * card)
 //
 //
 //*****************************************************************************
-int lcd_play_image (string image_command)
+int lcd_play_image (const char * image_command)
 {
-    system(image_command);
-
-   return 0;
+   system(image_command);
 }
 

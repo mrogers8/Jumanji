@@ -1,4 +1,4 @@
-FILENAME=test_play_image
+FILENAME=test_slideshow
 CC=arm-linux-gnueabihf-gcc
 IDIR =../include
 CFLAGS=-I$(IDIR) `pkg-config --cflags mpv`

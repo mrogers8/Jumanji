@@ -21,6 +21,7 @@
 #include "stepper_control.h"
 #include "stepper.h"
 #include "stepper_move.h"
+#include "lcd.h"
 
 #define DEVICE_ID_REG 		"/sys/kernel/ece453/device_id"
 #define GPIO_IN_REG	 	"/sys/kernel/ece453/gpio_in"
