@@ -215,6 +215,19 @@ const Space RIVER_CROC = { 1, 3, 1, 3, MPV_RIVER_INST[0]};
 // CARD TYPE ORDERING FOR DECODING
 const Space[6] RIVER_CARDS = {RIVER_CROC};
 
+//*****************************************************************************
+// lcd_play_image
+// Plays a specified image for a pre-set period of time
+//
+//
+//*****************************************************************************
+int lcd_play_space (Card * card)
+{
+
+  lcd_play_image(card->
+
+  return 0;
+}
 
 //*****************************************************************************
 // lcd_play_image
@@ -222,11 +235,10 @@ const Space[6] RIVER_CARDS = {RIVER_CROC};
 //
 //
 //*****************************************************************************
-
-
 int lcd_play_image (string image_command)
 {
     system(image_command);
 
    return 0;
 }
+
