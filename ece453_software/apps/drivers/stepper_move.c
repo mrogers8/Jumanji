@@ -3,9 +3,9 @@
  * General motion control functions
  */
 #include "../include/stepper_move.h"
+#include "../include/stepper.h"
 
-int x_pos = 0;
-int y_pos = 0;
+
 
 //*****************************************************************************
 //  stepper_reset
@@ -13,7 +13,7 @@ int y_pos = 0;
 //
 //  Return: 0 for success, 1 for failure
 //*****************************************************************************
-int stepper_reset (void) 
+int stepper_reset (void)
 {
 
   uint8_t done_x = 0;
@@ -22,7 +22,7 @@ int stepper_reset (void)
   printf("INFO: step_reset begin\n");
   step_y(STEPPER_MAX_Y, STEPPER_SOUTH);
   step_x(STEPPER_MAX_X, STEPPER_WEST);
- 
+
   // Poll for button press
   printf("DEBUG: Buttons (%i, %i)\n", buttons_read_x_min(), buttons_read_y_min());
   while (!(done_x = buttons_read_x_min()) || !(done_y = buttons_read_y_min())) {
@@ -48,8 +48,7 @@ int stepper_reset (void)
   forceStop_Y();
   forceStop_X();
 
-  x_pos = 0;
-  y_pos = 0;
+
 
   return 1;
 }
@@ -61,16 +60,16 @@ int stepper_reset (void)
 //  Input as step values
 //  Return: 0 for success, 1 for failure
 //*****************************************************************************
-int stepper_position (uint32_t x, uint32_t y) 
+int stepper_position (uint32_t x, uint32_t y, uint32_t x_pos, uint32_t y_pos)
 {
   printf("INFO: step_position posi begin (%d, %d)\n", x_pos, y_pos);
   printf("INFO: step_position move begin (%d, %d)\n", x, y);
-  
+
   if (x > STEPPER_MAX_X || x < 0 || y > STEPPER_MAX_Y || x < 0) {
 	printf("ERROR: Invalid x: %d, y: %d - cannot move\n", x, y);
 	return 1;
-  } 
- 
+  }
+
   //Move Y
   if (y_pos > y) {
 	printf("INFO: stepper_position SOUTH, y_pos: %d\n", y_pos);
@@ -90,4 +89,3 @@ int stepper_position (uint32_t x, uint32_t y)
   }
   return 0;
 }
-

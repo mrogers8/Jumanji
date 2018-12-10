@@ -7,6 +7,6 @@
 //*****************************************************************************
 //*****************************************************************************
 int stepper_reset(void);
-int stepper_position(uint32_t x, uint32_t y);
+int stepper_position(uint32_t x, uint32_t y, uint32_t x_pos, uint32_t y_pos);
 
 #endif

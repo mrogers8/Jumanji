@@ -30,7 +30,6 @@ int y_3 = 2650;
 int y_4 = 750;
 
 
-
 int move(int x, int y, int mag) {
   if(mag == 1) {
     electro_mag_on();
@@ -43,6 +42,141 @@ int move(int x, int y, int mag) {
   electro_mag_off();
   return 1;
 }
+
+int movePath(int player, int run, int moveNum, int offset) {
+
+  switch (run)
+  {
+    case 1:
+
+    switch (player)
+    {
+        case 1:
+            move(x_1, y_1, 0);
+            move(x_1 = x_1 + offset * moveNum, y_1, 1);
+            break;
+
+        case 2:
+            move(x_2, y_2, 0);
+            move(x_2 = x_2 + offset * moveNum, y_2, 1);
+            break;
+
+        case 3:
+        move(x_3, y_3, 0);
+           move(x_3 = x_3 - offset * moveNum, y_3, 1);
+        break;
+
+        case 4:
+            move(x_4, y_4, 0);
+            move(x_4 = x_4 - offset * moveNum, y_4, 1);
+            break;
+    }
+    break;
+
+    case 2:
+      switch (player)
+      {
+          case 1:
+              move(x_1, y_1, 0);
+              move(x_1, y_1 = y_1 + offset * moveNum, 1);
+              break;
+
+          case 2:
+              move(x_2, y_2, 0);
+              move(x_2, y_2 = y_2 - offset * moveNum, 1);
+              break;
+
+          case 3:
+              move(x_3, y_3, 0);
+              move(x_3, y_3 = y_3 + offset * moveNum, 1);
+              break;
+
+          case 4:
+              move(x_4, y_4, 0);
+              move(x_4, y_4 = y_4 - offset * moveNum, 1);
+              break;
+      }
+    break;
+
+    case 3:
+      switch (player)
+      {
+          case 1:
+              move(x_1, y_1, 0);
+              move(x_1 = x_1 - offset * moveNum + 31, y_1, 1);
+              break;
+
+          case 2:
+              move(x_2, y_2, 0);
+              move(x_2 = x_2 - offset * moveNum + 31, y_2, 1);
+              break;
+
+          case 3:
+              move(x_3, y_3, 0);
+              move(x_3 = x_3 + offset * moveNum, y_3, 1);
+              break;
+
+          case 4:
+              move(x_4, y_4, 0);
+              move(x_4 = x_4 + offset * moveNum, y_4, 1);
+              break;
+      }
+    break;
+
+    case 4:
+      switch (player)
+      {
+          case 1:
+              move(x_1, y_1, 0);
+            move(x_1, y_1 = y_1 - offset * moveNum, 1);
+              break;
+
+          case 2:
+              move(x_2, y_2, 0);
+              move(x_2, y_2 = y_2 + offset * moveNum, 1);
+              break;
+
+          case 3:
+              move(x_3, y_3, 0);
+              move(x_3, y_3 = y_3 - offset * moveNum, 1);
+              break;
+
+          case 4:
+              move(x_4, y_4, 0);
+              move(x_4, y_4 = y_4 + offset * moveNum, 1);
+              break;
+      }
+    break;
+
+    case 5:
+      switch (player)
+      {
+          case 1:
+              move(x_1, y_1, 0);
+              move(x_1 = x_1 + offset * moveNum, y_1, 1);
+              break;
+
+          case 2:
+              move(x_2, y_2, 0);
+              move(x_2 = x_2 + offset * moveNum, y_2, 1);
+              break;
+
+          case 3:
+              move(x_3, y_3, 0);
+              move(x_3 = x_3 - offset * moveNum, y_3, 1);
+              break;
+
+          case 4:
+              move(x_4, y_4, 0);
+              move(x_4 = x_4 - offset * moveNum, y_4, 1);
+              break;
+      }
+    break;
+  }
+}
+
+
+
 
 //*****************************************************************************
 
@@ -93,8 +227,8 @@ int main(int argc, char **argv)
     move(x_4, y_4, 0);
     move(x_4, y_4 = y_4 - offset * 2, 1);
     */
-
-/*1*/
+/*
+//1
     move(x_1, y_1, 0);
     move(x_1 = x_1 + offset * 3, y_1, 1);
     move(x_1, y_1 = y_1 + offset * 2, 1);
@@ -103,7 +237,7 @@ int main(int argc, char **argv)
     move(x_1 = x_1 + offset * 5, y_1, 1);
 
 
-/*2*/    move(x_2, y_2, 0);
+//2 move(x_2, y_2, 0);
     move(x_2 = x_2 + offset * 3, y_2, 1);
     move(x_2, y_2 = y_2 - offset * 2, 1);
     move(x_2 = x_2 - offset * 5 + 151, y_2, 1);
@@ -111,20 +245,61 @@ int main(int argc, char **argv)
     move(x_2 = x_2 + offset * 5, y_2, 1);
 
 
-/*3*/    move(x_3, y_3, 0);
+3   move(x_3, y_3, 0);
     move(x_3 = x_3 - offset * 3, y_3, 1);
     move(x_3, y_3 = y_3 + offset * 2, 1);
     move(x_3 = x_3 + offset * 5, y_3, 1);
     move(x_3, y_3 = y_3 - offset * 4, 1);
     move(x_3 = x_3 - offset * 5, y_3, 1);
 
-/*4*/
+4
     move(x_4, y_4, 0);
     move(x_4 = x_4 - offset * 3, y_4, 1);
     move(x_4, y_4 = y_4 - offset * 2, 1);
     move(x_4 = x_4 + offset * 5, y_4, 1);
     move(x_4, y_4 = y_4 + offset * 4, 1);
     move(x_4 = x_4 - offset * 5, y_4, 1);
+*/
+
+while(1) {
+
+    int startSpace = 0;
+    int endSpace = 0; // 1 - 20
+    int remainingSpaces = endSpace;
+    int moveNum = 0;
+    int player = 1; //  - 4
+
+
+
+    printf("Please input the player");
+    scanf("%d", &player);
+    printf("Please input the current space");
+    scanf("%d", &startSpace);
+    printf("Please enter the new space: ");
+    scanf("%d", &endSpace);
+
+    int currentSpace = startSpace;
+
+    for(int i = startSpace; i < endSpace; i++) {
+      if(i < 4) {
+        movePath(player, 1, 1, offset);
+      } else if (i >= 4 && i < 6) {
+          movePath(player, 2, 1, offset);
+      } else if (i >= 6 && i < 11) {
+          movePath(player, 3, 1, offset);
+      } else if (i >= 11 && i < 15) {
+          movePath(player, 4, 1, offset);
+      } else if (i >= 15 && i < 20) {
+          movePath(player, 5, 1, offset);
+      } else {
+
+      }
+    }
+
+
+
+
+}
 
   while(1) {
 
