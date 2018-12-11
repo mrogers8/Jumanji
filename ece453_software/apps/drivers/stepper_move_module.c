@@ -20,6 +20,7 @@
    } else if (end == SPACE_WINNING) {
      win = 1;
      moveSpaces(player_num, player_space[player_num], end);
+     printf("\nPLAYER %d WINS!!!\n", player_num);
    } else {
      win = 0;
      moveSpaces(player_num, player_space[player_num], end);

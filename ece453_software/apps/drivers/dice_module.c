@@ -15,9 +15,11 @@
    dice_roll = generate_number(roll_max);
 
    // Wait for a button press
+   printf("Press button to roll\n");
    while (!buttons_read_all());
 
    //lcd_play_image();              //TODO: add dice roll image/animation
+   printf("Roll = %d\n", dice_roll);
 
    return dice_roll;
 
