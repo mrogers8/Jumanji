@@ -261,15 +261,15 @@ int movePath(int player, int run, int moveNum) {
         if(startSpace - endSpace >= 0) {
             for(int i = startSpace; i < endSpace; i++) {
               if(i < 4) {
-                movePath(player, 1, 1, offset);
+                movePath(player, 1, 1);
               } else if (i >= 4 && i < 6) {
-                  movePath(player, 2, 1, offset);
+                  movePath(player, 2, 1);
               } else if (i >= 6 && i < 11) {
-                  movePath(player, 3, 1, offset);
+                  movePath(player, 3, 1);
               } else if (i >= 11 && i < 15) {
-                  movePath(player, 4, 1, offset);
+                  movePath(player, 4, 1);
               } else if (i >= 15 && i < 20) {
-                  movePath(player, 5, 1, offset);
+                  movePath(player, 5, 1);
               } else {
 
               }
@@ -277,15 +277,15 @@ int movePath(int player, int run, int moveNum) {
         } else {
             for(int i = startSpace; i < endSpace; i++) {
                 if (i >= 15 && i < 20) {
-                    movePath(player, 5, -1, offset);
+                    movePath(player, 5, -1);
                 } else if (i >= 11 && i < 15) {
-                    movePath(player, 4, -1, offset);
+                    movePath(player, 4, -1);
                 } else if (i >= 6 && i < 11) {
-                    movePath(player, 3, -1, offset);
+                    movePath(player, 3, -1);
                 } else if (i >= 4 && i < 6) {
-                    movePath(player, 2, -1, offset);
+                    movePath(player, 2, -1);
                 } else if(i < 4) {
-                   movePath(player, 1, -1, offset);
+                   movePath(player, 1, -1);
                 } else {
 
                 }
