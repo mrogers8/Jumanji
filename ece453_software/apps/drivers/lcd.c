@@ -207,6 +207,41 @@ const char * MPV_JUNGLE_LOSE[5] = {
                                 "mpv --image-display-duration=10 video/JungleStampedeFail.png"
 };
 
+
+
+const char * DICE_ROLLING[18] = {
+                                "mpv --image-display-duration=0.166 video/Roll1.png",
+                                "mpv --image-display-duration=0.166 video/Roll2.png",
+                                "mpv --image-display-duration=0.166 video/Roll3.png",
+                                "mpv --image-display-duration=0.166 video/Roll4.png",
+                                "mpv --image-display-duration=0.166 video/Roll5.png",
+                                "mpv --image-display-duration=0.166 video/Roll6.png",
+                                "mpv --image-display-duration=0.166 video/Roll2.png",
+                                "mpv --image-display-duration=0.166 video/Roll4.png",
+                                "mpv --image-display-duration=0.166 video/Roll3.png",
+                                "mpv --image-display-duration=0.166 video/Roll5.png",
+                                "mpv --image-display-duration=0.166 video/Roll1.png",
+                                "mpv --image-display-duration=0.166 video/Roll6.png",
+                                "mpv --image-display-duration=0.266 video/Roll3.png",
+                                "mpv --image-display-duration=0.366 video/Roll2.png",
+                                "mpv --image-display-duration=0.466 video/Roll5.png",
+                                "mpv --image-display-duration=0.566 video/Roll6.png",
+                                "mpv --image-display-duration=0.76 video/Roll4.png",
+                                "mpv --image-display-duration=0.99 video/Roll1.png"
+
+}; 
+
+const char * DICE_LAST_FRAME[6] = {
+                                "mpv --image-display-duration=5 video/Roll1.png",
+                                "mpv --image-display-duration=5 video/Roll2.png",
+                                "mpv --image-display-duration=5 video/Roll3.png",
+                                "mpv --image-display-duration=5 video/Roll4.png",
+                                "mpv --image-display-duration=5 video/Roll5.png",
+                                "mpv --image-display-duration=5 video/Roll6.png",
+
+
+};
+
 // CARD TYPE ORDERING FOR DECODING
 //const Space RIVER_CARDS[6] = {RIVER_CROC};
 
