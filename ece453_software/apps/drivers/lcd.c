@@ -1,4 +1,6 @@
-D IMAGE PLAYER
+/*
+ * lcd.c
+ * LCD IMAGE PLAYER
  */
 #include "../include/ece453.h"
 

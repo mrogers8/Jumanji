@@ -9,7 +9,7 @@
 
 const int RIVER_BEGIN = 11;
 const int RIVER_END = 15;
-extern int player_space[4];
+extern uint16_t player_space[4];
 
 
 int riddle_module(int player_num)
