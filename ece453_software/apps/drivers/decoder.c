@@ -9,6 +9,8 @@
 
 //*****************************************************************************
 // Select Correct Card From Color Sequece
+// Input: None;
+// Returns: index for card Definitions
 //*****************************************************************************
 
 int decode() {
@@ -34,7 +36,4 @@ int decode() {
             return i;
         }
     }
-
-    for()
-
 }
