@@ -5,8 +5,14 @@
  * Returns number of players
  */
 
+#include "../include/ece453.h"
+
 int game_start_module()
 {
+
+  int button_press;
+  int num_players;
+
   //****************************
   // Hardware Initialization
   //****************************
@@ -30,18 +36,23 @@ int game_start_module()
   //lcd_play_image();       //TODO: add press for the number of players
   printf("Enter number of Players RED = 1, Orange = 2, Green = 3, Blue = 4\n");
 
-  while (!(button_press = buttons_read_all())) {
-	if      (buttons_is_red(button_press)) 	   num_players = 1;
- 	else if (buttons_is_orange(button_press))  num_players = 2;
-  else if (buttons_is_green(button_press))   num_players = 3;
-	else if (buttons_is_blue(button_press))    num_players = 4;
-  }
+  while (!(button_press = buttons_read_all()));
 
-  // TODO: button does not work so this is hardcoded
-  num_players = 4;
+	if(button_press == 8) {
+            num_players = 1;
+        } else if (button_press == 4) {
+            num_players = 2;
+        } else if (button_press == 2) {
+            num_players = 3;
+        } else if (button_press == 1) {
+            num_players = 4;
+        } else {
+            return -1;
+	    printf("ERROR: invalid button value\n");
+        }
+
 
   printf("You have selected %d players\n", num_players);
-
 
   return num_players;
 }

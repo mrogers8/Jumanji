@@ -4,6 +4,7 @@
  *
  * Returns Dice Roll
  */
+#include "../include/ece453.h"
 
  int dice_module(int roll_max)
  {

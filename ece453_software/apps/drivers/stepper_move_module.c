@@ -5,6 +5,8 @@
  * Returns 1 if won, 0 if !won
  */
 
+#include "../include/ece453.h"
+
  uint16_t player_space[4] = {0, 0, 0, 0};
 
  int stepper_move_module(int player_num, int num_spaces)

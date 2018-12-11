@@ -5,15 +5,17 @@
  *
  */
 
+#include "../include/ece453.h"
+
 const int RIVER_BEGIN = 11;
 const int RIVER_END = 15;
-extern player_space[4];
+extern int player_space[4];
 
 
 int riddle_module(int player_num)
 {
   uint16_t card_index;
-  uint16_t dice_roll
+  uint16_t dice_roll;
 
   if (player_space[player_num] >= RIVER_BEGIN && player_space[player_num] <= RIVER_END){
     //lcd_play_image("DRAW RIVER CARD") //SLIDESHOW

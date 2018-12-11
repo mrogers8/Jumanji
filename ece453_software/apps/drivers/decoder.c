@@ -3,9 +3,7 @@
 */
 
 
-#include "../include/buttons.h";
-#include "../include/decoder.h";
-#include "../incldue/lcd.h"
+#include "../include/ece453.h"
 
 //*****************************************************************************
 // Select Correct Card From Color Sequece
@@ -16,23 +14,24 @@
 int decode() {
     int buttonsVal;
     char code[4];
+
     for(int i = 0; i < 4; i++) {
         while (buttonsVal = buttons_read_all == 0);
-        if(buttonsVal == 8 {
-            char[i] = R
+        if(buttonsVal == 8) {
+            code[i] = 'R';
         } else if (buttonsVal == 4) {
-            char[i] = O
+            code[i] = 'O';
         } else if (buttonsVal == 2) {
-            char[i] = G
+            code[i] = 'G';
         } else if (buttonsVal == 1) {
-            char[i] = B
+            code[i] = 'B';
         } else {
             return -1;
         }
     }
 
     for(int i = 0; i < 11; i++) {
-        if(strcmp(cardDefinitions[i].code, this.code) == 0) {
+        if(strcmp(cardDefinitions[i].code, code) == 0) {
             return i;
         }
     }

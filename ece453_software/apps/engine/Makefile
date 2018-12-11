@@ -1,4 +1,4 @@
-FILENAME=integration
+FILENAME=engine
 CC=arm-linux-gnueabihf-gcc
 IDIR =../include
 CFLAGS=-I$(IDIR)
