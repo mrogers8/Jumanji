@@ -18,10 +18,32 @@
    // Wait for a button press
    printf("Press button to roll\n");
    while (!buttons_read_all());
+   
+   lcd_play_image(DICE_ROLLING);              //TODO: add dice roll image/animation
+   
+   // Display the last frame of the dice (the actuall rolled number)
+   switch(dice_roll) {
+     case 1:
+       lcd_play_image(DICE_LAST_FRAME[0]);
 
-   //lcd_play_image();              //TODO: add dice roll image/animation
+     case 2:
+       lcd_play_image(DICE_LAST_FRAME[1]);
+
+     case 3:
+       lcd_play_image(DICE_LAST_FRAME[2]);
+
+     case 4:
+       lcd_play_image(DICE_LAST_FRAME[3]);
+
+     case 5:
+       lcd_play_image(DICE_LAST_FRAME[4]);
+
+     case 6:
+       lcd_play_image(DICE_LAST_FRAME[5]);
+   }
+
    printf("Roll = %d\n", dice_roll);
 
    return dice_roll;
 
- }
+}
