@@ -4,6 +4,9 @@
  */
 #include "../include/stepper_move.h"
 
+extern bool complete_X;
+extern bool complete_Y;
+
 int x_pos;
 int y_pos;
 
@@ -32,8 +35,8 @@ int stepper_reset (void)
   int done_x, done_y;
 
   printf("INFO: step_reset begin\n");
-  step_x(STEPPER_MAX, STEPPER_SOUTH);
-  step_y(STEPPER_MAX, STEPPER_WEST);
+  step_x(STEPPER_MAX_X, STEPPER_SOUTH);
+  step_y(STEPPER_MAX_Y, STEPPER_WEST);
 
   // Poll for button press
   while (!(done_x = buttons_read_x_min()) || !(done_y = buttons_read_y_min())) {
@@ -61,11 +64,11 @@ int stepper_reset (void)
 //  Input as step values
 //  Return: 0 for success, 1 for failure
 //*****************************************************************************
-int stepper_position (int x, int y)
+int stepper_position (uint32_t x, uint32_t y)
 {
   printf("INFO: step_position begin (%d, %d)\n", x, y);
 
-  if (x > STEPPER_MAX || x < 0 || y > STEPPER_MAX || x < 0) {
+  if (x > STEPPER_MAX_X || x < 0 || y > STEPPER_MAX_Y || x < 0) {
 	printf("ERROR: Invalid x: %d, y: %d - cannot move\n");
 	return 1;
   }
@@ -94,11 +97,11 @@ int stepper_position (int x, int y)
 //  Input step values and a 1 or 0 for magnet on or off
 //  Return: 1
 //*****************************************************************************
-int move(int x, int y, int mag) {
+int move(uint32_t x, uint32_t y, uint32_t mag) {
   if(mag == 1) {
     electro_mag_on();
   }
-  stepper_position(x, y, x_pos, y_pos);
+  stepper_position(x, y);
   x_pos = x;
   y_pos = y;
   while (!complete_X || !complete_Y);
@@ -117,7 +120,7 @@ int move(int x, int y, int mag) {
 //         moveNum number of spaces to move
 //  Return: 1
 //*****************************************************************************
-int movePath(int player, int run, int moveNum) {
+int movePath(uint32_t player, uint32_t run, uint32_t moveNum) {
 
   switch (run)
   {
@@ -257,7 +260,7 @@ int movePath(int player, int run, int moveNum) {
 //  Return: 1
 //*****************************************************************************
 
-    int moveSpaces(int player, int startSpace, int endSpace) {
+    int moveSpaces(uint32_t player, uint32_t startSpace, uint32_t endSpace) {
         if(startSpace - endSpace >= 0) {
             for(int i = startSpace; i < endSpace; i++) {
               if(i < 4) {

@@ -23,6 +23,10 @@
 #include "stepper_move.h"
 #include "lcd.h"
 #include "decoder.h"
+#include "dice_module.h"
+#include "riddle_module.h"
+#include "stepper_move_module.h"
+#include "game_start_module.h"
 
 #define DEVICE_ID_REG 		"/sys/kernel/ece453/device_id"
 #define GPIO_IN_REG	 	"/sys/kernel/ece453/gpio_in"

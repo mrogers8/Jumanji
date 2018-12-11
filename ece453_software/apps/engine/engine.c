@@ -19,7 +19,7 @@ int num_players;	// valid if 1-4
 int player_turn = 0;	// 0-indexed, valid if <5
 
 // Player Position Variables
-extern int player_space[4];
+extern uint16_t player_space[4];
 
 //*****************************************************************************
 int main(int argc, char **argv)
@@ -36,14 +36,14 @@ int main(int argc, char **argv)
   while (!game_won) {
 
     // Roll Dice Module
-	  dice_roll = dice_module();;
+    dice_roll = dice_module(3);;
 
-  	// Move Player
-    game_won = stepper_move_module();
+    // Move Player
+    game_won = stepper_move_module(player_turn, dice_roll);
 
     if (!game_won) {
       //LCD SHOW RIDDLE
-      riddle_module();
+      riddle_module(player_turn);
     }
 
   	// Go to next player

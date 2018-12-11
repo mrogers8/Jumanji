@@ -7,7 +7,7 @@
 #include "../include/stepper_control.h"
 
 
-volatile int player_space[4] = {0,0,0,0};
+extern uint16_t player_space[4];
 
 //*****************************************************************************
 // stepper_player_start 

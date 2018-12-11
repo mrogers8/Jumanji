@@ -7,8 +7,8 @@
  */
 #include "../include/stepper.h"
 
-volatile bool complete_X = true;
-volatile bool complete_Y = true;
+bool complete_X = true;
+bool complete_Y = true;
 struct sigaction stepper_sig;
 
 //*****************************************************************************
