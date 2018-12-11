@@ -254,6 +254,6 @@ int lcd_play_image (const char * image_command)
 
 int lcd_dice_roll () 
 {
-   system(command);
+   system(DICE_ROLL_ANIMATION);
    return 0;
 }
