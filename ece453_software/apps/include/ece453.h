@@ -22,6 +22,7 @@
 #include "stepper.h"
 #include "stepper_move.h"
 #include "lcd.h"
+#include "decoder.h"
 
 #define DEVICE_ID_REG 		"/sys/kernel/ece453/device_id"
 #define GPIO_IN_REG	 	"/sys/kernel/ece453/gpio_in"
@@ -44,15 +45,15 @@
 //*******************************************************************
 // Register Addresses
 //*******************************************************************
-#define ECE453_DEV_ID_OFFSET        0 
-#define ECE453_GPIO_IN_OFFSET       1 
-#define ECE453_GPIO_OUT_OFFSET      2 
-#define ECE453_CONTROL_X_OFFSET     3 
-#define ECE453_STEP_COUNT_X_OFFSET  4 
-#define ECE453_STEP_PERIOD_OFFSET   5 
-#define ECE453_IM_OFFSET            6 
-#define ECE453_IRQ_OFFSET           7 
-#define ECE453_CONTROL_Y_OFFSET     8 
+#define ECE453_DEV_ID_OFFSET        0
+#define ECE453_GPIO_IN_OFFSET       1
+#define ECE453_GPIO_OUT_OFFSET      2
+#define ECE453_CONTROL_X_OFFSET     3
+#define ECE453_STEP_COUNT_X_OFFSET  4
+#define ECE453_STEP_PERIOD_OFFSET   5
+#define ECE453_IM_OFFSET            6
+#define ECE453_IRQ_OFFSET           7
+#define ECE453_CONTROL_Y_OFFSET     8
 #define ECE453_STEP_COUNT_Y_OFFSET  9
 #define ECE453_STEP_PERIOD_Y_OFFSET 10
 #define ECE453_ELECTRO_MAG_OFFSET   11

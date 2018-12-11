@@ -24,6 +24,8 @@ typedef struct Cards {
    int magic_roll;              // number to win
    int space_reward;            // number of space to move
 
+   char code[4];
+
    const char * mpv_inst;       // image command
    const char * mpv_win;
    const char * mpv_lose;
