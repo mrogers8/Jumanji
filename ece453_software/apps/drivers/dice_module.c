@@ -19,7 +19,7 @@
    printf("Press button to roll\n");
    while (!buttons_read_all());
    
-   lcd_play_image(DICE_ROLLING);              //TODO: add dice roll image/animation
+   lcd_dice_roll() ;              //TODO: add dice roll image/animation
    
    // Display the last frame of the dice (the actuall rolled number)
    switch(dice_roll) {
