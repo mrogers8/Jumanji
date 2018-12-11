@@ -2,24 +2,23 @@
  * dice_module.c
  * Game module for dice rolls
  *
- * Maybe: Returns 1 if won, 0 is !won
+ * Returns Dice Roll
  */
- 
- void dice_module()
+
+ int dice_module(int roll_max)
  {
- 
+
    uint16_t dice_roll;
- 
+
    // Initialize the dice module
-   lcd_play_image();              //TODO: add dice image
-   dice_roll = generate_number(6);
-   
+   //lcd_play_image();              //TODO: add dice image
+   dice_roll = generate_number(roll_max);
+
    // Wait for a button press
    while (!buttons_read_all());
-   
-   lcd_play_image();              //TODO: add dice roll image/animation
-   
-   stepper_move_module();
-   
+
+   //lcd_play_image();              //TODO: add dice roll image/animation
+
+   return dice_roll;
+
  }
- 

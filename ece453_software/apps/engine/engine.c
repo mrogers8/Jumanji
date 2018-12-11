@@ -19,7 +19,7 @@ int num_players;	// valid if 1-4
 int player_turn = 0;	// 0-indexed, valid if <5
 
 // Player Position Variables
-volatile int player_space[4];
+extern int player_space[4];
 
 //*****************************************************************************
 int main(int argc, char **argv)
@@ -29,59 +29,28 @@ int main(int argc, char **argv)
   int dice_roll;
   int button_press;
 
-  //****************************
-  // Hardware Initialization
-  //****************************
-  //**TODO LCD_play title screen
-  stepper_hw_init();
-  leds_set_all();
-  stepper_reset();
-  //**TODO LCD play press any button to continue screen
-  
-  // Press any button to continue
-  while (!buttons_read_all());
-
-  //****************************
-  // Game Initialization
-  //****************************
-  // Determine player count
-  //**TODO LCD_play select players screen
-  
-  
-  while (!(button_press = buttons_read_all())) {
-	if (buttons_is_red(button_press)) 	   num_players = 1;
- 	else if (buttons_is_orange(button_press))  num_players = 2;
-        else if (buttons_is_green(button_press))   num_players = 3;
-	else if (buttons_is_blue(button_press))    num_players = 4;
-  }
-  // 2 buttons do not work so this is hardcoded
-  num_players = 4;
-  
-  
+  // INITIALIZE GAME
+  num_players = game_start_module();
 
   // Game Play
   while (!game_won) {
-	// Roll Dice Module
-	dice_roll = ;
 
+    // Roll Dice Module
+	  dice_roll = dice_module();;
 
-	// Move Player
+  	// Move Player
+    game_won = stepper_move_module();
 
-	// Check if won (player space > value)
-	if (player_space[player_turn] >= SPACE_WINNING) {
-	   game_won = player_turn + 1;
-	}
-	
-	// Show Riddle
-	//TODO add riddle lcd module
-	// Interface (player, position)
+    if (!game_won) {
+      //LCD SHOW RIDDLE
+      riddle_module();
+    }
 
+  	// Go to next player
+  	player_turn = (player_turn + 1) % 4;
 
-	// Go to next player
-	player_turn = (player_turn + 1) % 4;
+    }
 
-  }
-    
 
   // End Game Sequence
 
@@ -89,4 +58,3 @@ int main(int argc, char **argv)
 
   return 0;
 }
-
